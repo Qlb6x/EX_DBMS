@@ -1,0 +1,58 @@
+create table student (
+sno char[10] key not_null valid ,
+sname char[20] not_key not_null valid ,
+age int not_key not_null valid ,
+sex int not_key not null valid
+) in school ;
+
+create table card (
+sno char[10] key not_null valid ,
+money int not_key not_null valid
+) in school ;
+
+create table book (
+bno char[10] key not_null valid ,
+sno char[10] not_key not_null valid ,
+price int not_key not null valid
+) in school ;
+
+insert into student values ( '10131674' , 'lsy' , 22 , 1 ) in school ;
+insert into student values ( '10131675' , 'gsx' , 23 , 1 ) in school ;
+insert into student values ( '10131676' , 'liy' , 22 , 1 ) in school ;
+
+insert into card values ( '10131674' , 100 ) in school ;
+insert into card values ( '10131675' , 200 ) in school ;
+insert into card values ( '10131676' , 300 ) in school ;
+
+insert into book values ( 'shuxue' , '10131674' , 5 ) in school ;
+insert into book values ( 'yinyu' , '10131675' , 2 ) in school ;
+insert into book values ( 'jsj' , '10131676' , 3 ) in school ;
+
+edit table student ( sname char[30] key null valid ) in school ;
+
+rename table student student2 in school ;
+
+drop table book in school ;
+
+delete from student where name = lsy in school ;
+
+update student ( set age = 21 where name = lsy ) in school ;
+
+select * from student , book ;
+select * from student , book where name = lsy ;
+
+select student.sname , book.price from student , book where student.sname = lsy , book.bno = shuxue in school ;
+
+select * from student , book where student.sname = lsy , book.bno = shuxue in school ;
+
+select * from student , book where book.bno = shuxue  , student.sno = lsy in school ;
+
+select * from student in school ;
+
+select student.sname , student.sno from student in school where student.sname = lsy ;
+
+select student.sname , student.sno from student in school where sex = 1 ;
+
+select student.sname , student.sno from student in school where student.sname = lsy ;
+
+select * from student where book.bno = shuxue  , student.sno = lsy in school ;
